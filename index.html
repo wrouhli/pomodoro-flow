@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pomodoro Flow</title>
   <style>
-    :root{--navy:#0D1321;--gold:#FEC90A;--blue:#20A4F3;--bg:#FAFAFA;--text:#13213a;--muted:rgba(13,19,33,.65)}*{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top,#fff 0,#fafafa 40%,#f4f7fb 100%);color:var(--text)}.wrap{min-height:100%;display:grid;place-items:center;padding:24px}.app{width:min(1040px,100%);display:grid;grid-template-columns:1.05fr .95fr;gap:20px}.hero,.panel{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(13,19,33,.08);box-shadow:0 30px 80px rgba(13,19,33,.08);border-radius:28px}.hero{padding:28px}.panel{padding:24px}.badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);background:rgba(254,201,10,.12);border:1px solid rgba(254,201,10,.35);border-radius:999px;padding:8px 12px}.dot{width:8px;height:8px;border-radius:999px;background:var(--gold);box-shadow:0 0 0 4px rgba(254,201,10,.18)}h1{margin:18px 0 10px;font-size:clamp(2.4rem,5vw,4.6rem);line-height:.96;letter-spacing:-.05em;color:var(--navy)}p.sub{margin:0;color:var(--muted);font-size:1.02rem;line-height:1.6;max-width:56ch}.timer-card{margin-top:24px;background:linear-gradient(180deg,rgba(13,19,33,.98),rgba(19,27,48,.98));color:#fff;border-radius:28px;padding:24px;position:relative;overflow:hidden}.timer-card:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 20%,rgba(32,164,243,.3),transparent 30%),radial-gradient(circle at 80% 10%,rgba(254,201,10,.28),transparent 24%),radial-gradient(circle at 50% 100%,rgba(254,201,10,.14),transparent 28%);pointer-events:none}.timer-top{position:relative;z-index:1}.phase{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.phase strong{font-size:1rem;text-transform:uppercase;letter-spacing:.12em}.pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:.92rem}.time{font-variant-numeric:tabular-nums;font-size:clamp(4rem,12vw,7rem);font-weight:800;letter-spacing:-.08em;line-height:1;margin:10px 0;text-align:center}.progress{height:14px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}.progress>div{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),#ffd95d,var(--blue));border-radius:inherit;transition:width .3s ease}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.controls button,.chip,.toggle{border:0;border-radius:18px;padding:14px 16px;font-weight:700;cursor:pointer;font-size:1rem;transition:.2s transform,.2s opacity}.controls button:hover,.chip:hover,.toggle:hover{transform:translateY(-1px)}.primary{background:var(--gold);color:var(--navy)}.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}.ghost{background:rgba(32,164,243,.12);color:#dff3ff;border:1px solid rgba(32,164,243,.18)}.notice{margin-top:12px;font-size:.86rem;color:#cfe6ff;opacity:.9;text-align:center}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{background:#fff;border:1px solid rgba(13,19,33,.08);border-radius:20px;padding:14px}.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}.field input{width:100%;border:0;outline:0;font:inherit;font-size:1.1rem;font-weight:700;color:var(--navy);background:transparent}.list,.history{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}.list li,.history li{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:#fff;border:1px solid rgba(13,19,33,.08)}.list .k,.history .k{font-weight:700}.list .v,.history .v{color:var(--muted)}.footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px;color:var(--muted);font-size:.92rem}.tiny{font-size:.84rem}.seg{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{background:#fff;border:1px solid rgba(13,19,33,.08);color:var(--navy);padding:10px 12px}.chip.active{background:rgba(254,201,10,.14);border-color:rgba(254,201,10,.4)}.task{margin-top:14px;display:grid;gap:8px}.task input{width:100%;border-radius:16px;border:1px solid rgba(13,19,33,.1);padding:13px 14px;font:inherit;font-weight:700;color:var(--navy);outline:none}.task input:focus,.field input:focus{box-shadow:0 0 0 4px rgba(254,201,10,.18);border-color:rgba(254,201,10,.6)}.section-title{margin:16px 0 10px;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.toggles{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.toggle{background:#fff;border:1px solid rgba(13,19,33,.08);color:var(--navy);padding:10px 12px}.toggle.on{background:rgba(32,164,243,.12);border-color:rgba(32,164,243,.24)}@media (max-width:860px){.app{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
+    :root{--navy:#0D1321;--gold:#FEC90A;--blue:#20A4F3;--bg:#FAFAFA;--text:#13213a;--muted:rgba(13,19,33,.65);--card:rgba(255,255,255,.82);--border:rgba(13,19,33,.08);--shadow:0 30px 80px rgba(13,19,33,.08)}
+    [data-theme="dark"]{--bg:#0b1020;--text:#edf4ff;--muted:rgba(237,244,255,.7);--card:rgba(10,15,28,.82);--border:rgba(255,255,255,.08);--shadow:0 30px 80px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top,#fff 0,#fafafa 40%,#f4f7fb 100%);background-color:var(--bg);color:var(--text)}
+    [data-theme="dark"] body{background:radial-gradient(circle at top,#18213d 0,#0b1020 55%,#050814 100%)}
+    .wrap{min-height:100%;display:grid;place-items:center;padding:24px}.app{width:min(1040px,100%);display:grid;grid-template-columns:1.05fr .95fr;gap:20px}.hero,.panel{background:var(--card);backdrop-filter:blur(18px);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:28px}.hero{padding:28px}.panel{padding:24px}.badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);background:rgba(254,201,10,.12);border:1px solid rgba(254,201,10,.35);border-radius:999px;padding:8px 12px}.dot{width:8px;height:8px;border-radius:999px;background:var(--gold);box-shadow:0 0 0 4px rgba(254,201,10,.18)}h1{margin:18px 0 10px;font-size:clamp(2.4rem,5vw,4.6rem);line-height:.96;letter-spacing:-.05em;color:var(--navy)}p.sub{margin:0;color:var(--muted);font-size:1.02rem;line-height:1.6;max-width:56ch}.timer-card{margin-top:24px;background:linear-gradient(180deg,rgba(13,19,33,.98),rgba(19,27,48,.98));color:#fff;border-radius:28px;padding:24px;position:relative;overflow:hidden}.timer-card:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 20%,rgba(32,164,243,.3),transparent 30%),radial-gradient(circle at 80% 10%,rgba(254,201,10,.28),transparent 24%),radial-gradient(circle at 50% 100%,rgba(254,201,10,.14),transparent 28%);pointer-events:none}.timer-top{position:relative;z-index:1}.phase{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.phase strong{font-size:1rem;text-transform:uppercase;letter-spacing:.12em}.pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-size:.92rem}.time{font-variant-numeric:tabular-nums;font-size:clamp(4rem,12vw,7rem);font-weight:800;letter-spacing:-.08em;line-height:1;margin:10px 0;text-align:center}.progress{height:14px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}.progress>div{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),#ffd95d,var(--blue));border-radius:inherit;transition:width .3s ease}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.controls button,.chip,.toggle{border:0;border-radius:18px;padding:14px 16px;font-weight:700;cursor:pointer;font-size:1rem;transition:.2s transform,.2s opacity}.controls button:hover,.chip:hover,.toggle:hover{transform:translateY(-1px)}.primary{background:var(--gold);color:var(--navy)}.secondary{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}.ghost{background:rgba(32,164,243,.12);color:#dff3ff;border:1px solid rgba(32,164,243,.18)}.notice{margin-top:12px;font-size:.86rem;color:#cfe6ff;opacity:.9;text-align:center}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:14px}.field label{display:block;font-size:.82rem;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em}.field input{width:100%;border:0;outline:0;font:inherit;font-size:1.1rem;font-weight:700;color:var(--navy);background:transparent}.list,.history{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:10px}.list li,.history li{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--card);border:1px solid var(--border)}.list .k,.history .k{font-weight:700}.list .v,.history .v{color:var(--muted)}.footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:16px;color:var(--muted);font-size:.92rem}.tiny{font-size:.84rem}.seg{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{background:var(--card);border:1px solid var(--border);color:var(--navy);padding:10px 12px}.chip.active{background:rgba(254,201,10,.14);border-color:rgba(254,201,10,.4)}.task{margin-top:14px;display:grid;gap:8px}.task input{width:100%;border-radius:16px;border:1px solid rgba(13,19,33,.1);padding:13px 14px;font:inherit;font-weight:700;color:var(--navy);outline:none;background:var(--card)}.task input:focus,.field input:focus{box-shadow:0 0 0 4px rgba(254,201,10,.18);border-color:rgba(254,201,10,.6)}.section-title{margin:16px 0 10px;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.toggles{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.toggle{background:var(--card);border:1px solid var(--border);color:var(--navy);padding:10px 12px}.toggle.on{background:rgba(32,164,243,.12);border-color:rgba(32,164,243,.24)}.summary{margin-top:16px;padding:14px 16px;border-radius:18px;border:1px dashed rgba(32,164,243,.35);background:rgba(32,164,243,.08)}.summary strong{display:block;margin-bottom:4px} @media (max-width:860px){.app{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -16,24 +20,18 @@
         <h1>Simple focus, no clutter.</h1>
         <p class="sub">A clean single-page Pomodoro timer with localStorage persistence, cycle tracking, one-tap controls, sound toggles, notification hardening, task history, and subtle bells. Built to stay out of the way.</p>
         <p class="sub" style="margin-top:12px;color:#0D1321;opacity:.85;font-weight:600">Current task: <span id="taskPreview">Focus session</span></p>
-
         <div class="task"><input id="taskInput" type="text" maxlength="80" placeholder="What are you working on?" /></div>
-
         <div class="timer-card">
           <div class="timer-top">
             <div class="phase"><strong id="phaseLabel">Focus</strong><span class="pill" id="cycleLabel">Cycle 1 / 4</span></div>
             <div class="time" id="timeDisplay">25:00</div>
             <div class="progress" aria-label="Session progress"><div id="progressBar"></div></div>
-            <div class="controls">
-              <button class="primary" id="startBtn">Start</button>
-              <button class="secondary" id="pauseBtn">Pause</button>
-              <button class="ghost" id="skipBtn">Skip</button>
-            </div>
+            <div class="controls"><button class="primary" id="startBtn">Start</button><button class="secondary" id="pauseBtn">Pause</button><button class="ghost" id="skipBtn">Skip</button></div>
             <div class="notice" id="notifyStatus">Notifications: not enabled</div>
+            <div class="summary" id="sessionSummary"><strong>Session summary</strong><span id="summaryText">No session completed yet.</span></div>
           </div>
         </div>
       </div>
-
       <aside class="panel">
         <div class="grid">
           <div class="field"><label>Focus minutes</label><input id="focusMin" type="number" min="1" max="180" step="1" /></div>
@@ -41,77 +39,61 @@
           <div class="field"><label>Long break</label><input id="longMin" type="number" min="1" max="120" step="1" /></div>
           <div class="field"><label>Long break after</label><input id="cyclesBeforeLong" type="number" min="1" max="10" step="1" /></div>
         </div>
-
-        <div class="seg" aria-label="Quick presets">
-          <button class="chip" data-preset="25,5,15,4">Classic 25/5</button>
-          <button class="chip" data-preset="50,10,20,4">Deep work 50/10</button>
-          <button class="chip" data-preset="15,3,10,4">Fast 15/3</button>
-        </div>
-
-        <div class="toggles">
-          <button class="toggle" id="soundToggle">Sound: on</button>
-          <button class="toggle" id="desktopToggle">Notify: ask</button>
-        </div>
-
+        <div class="seg" aria-label="Quick presets"><button class="chip" data-preset="25,5,15,4">Classic 25/5</button><button class="chip" data-preset="50,10,20,4">Deep work 50/10</button><button class="chip" data-preset="15,3,10,4">Fast 15/3</button></div>
+        <div class="toggles"><button class="toggle" id="soundToggle">Sound: on</button><button class="toggle" id="desktopToggle">Notify: ask</button><button class="toggle" id="themeToggle">Theme: light</button></div>
         <div class="section-title">Tiny history</div>
         <ul class="history" id="historyList"></ul>
-
-        <ul class="list">
-          <li><span class="k">Completed focus sessions</span><span class="v" id="completedCount">0</span></li>
-          <li><span class="k">Status</span><span class="v" id="statusText">Ready</span></li>
-          <li><span class="k">Autosave</span><span class="v">localStorage</span></li>
-          <li><span class="k">Shortcuts</span><span class="v">Space / P / S / R / N</span></li>
-        </ul>
-
-        <div class="footer">
-          <span class="tiny">Your settings and progress persist automatically.</span>
-          <button class="chip" id="resetBtn">Reset all</button>
-        </div>
+        <ul class="list"><li><span class="k">Completed focus sessions</span><span class="v" id="completedCount">0</span></li><li><span class="k">Status</span><span class="v" id="statusText">Ready</span></li><li><span class="k">Autosave</span><span class="v">localStorage</span></li><li><span class="k">Shortcuts</span><span class="v">Space / P / S / R / N</span></li></ul>
+        <div class="footer"><span class="tiny">Your settings and progress persist automatically.</span><button class="chip" id="resetBtn">Reset all</button></div>
       </aside>
     </section>
   </main>
-
   <script>
-    const STORAGE_KEY = 'pomodoro-flow-v4';
-    const defaults = {focusMin:25, shortMin:5, longMin:15, cyclesBeforeLong:4, completed:0, phase:'focus', cycle:1, remaining:25*60, running:false, lastTick:null, task:'Focus session', soundOn:true, history:[], notifMode:'ask'};
-    let state = load(); let timer = null; const $ = id => document.getElementById(id);
-    const els = {phaseLabel:$('phaseLabel'), cycleLabel:$('cycleLabel'), timeDisplay:$('timeDisplay'), progressBar:$('progressBar'), startBtn:$('startBtn'), pauseBtn:$('pauseBtn'), skipBtn:$('skipBtn'), resetBtn:$('resetBtn'), focusMin:$('focusMin'), shortMin:$('shortMin'), longMin:$('longMin'), cyclesBeforeLong:$('cyclesBeforeLong'), completedCount:$('completedCount'), statusText:$('statusText'), taskInput:$('taskInput'), taskPreview:$('taskPreview'), notifyStatus:$('notifyStatus'), soundToggle:$('soundToggle'), desktopToggle:$('desktopToggle'), historyList:$('historyList')};
-    function load(){ try{ return {...defaults, ...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}; } catch { return {...defaults}; } }
-    function save(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-    function minutesForPhase(){ return state.phase === 'focus' ? state.focusMin : (state.cycle % state.cyclesBeforeLong === 0 ? state.longMin : state.shortMin); }
-    function phaseName(){ return state.phase === 'focus' ? 'Focus' : (state.cycle % state.cyclesBeforeLong === 0 ? 'Long break' : 'Short break'); }
-    function fmt(sec){ sec = Math.max(0, Math.round(sec)); const m = String(Math.floor(sec/60)).padStart(2,'0'); const s = String(sec%60).padStart(2,'0'); return `${m}:${s}`; }
+    const STORAGE_KEY='pomodoro-flow-v5';
+    const defaults={focusMin:25,shortMin:5,longMin:15,cyclesBeforeLong:4,completed:0,phase:'focus',cycle:1,remaining:25*60,running:false,lastTick:null,task:'Focus session',soundOn:true,history:[],notifMode:'ask',theme:'light',lastSummary:'No session completed yet.'};
+    let state=load(); let timer=null; const $=id=>document.getElementById(id);
+    const els={phaseLabel:$('phaseLabel'),cycleLabel:$('cycleLabel'),timeDisplay:$('timeDisplay'),progressBar:$('progressBar'),startBtn:$('startBtn'),pauseBtn:$('pauseBtn'),skipBtn:$('skipBtn'),resetBtn:$('resetBtn'),focusMin:$('focusMin'),shortMin:$('shortMin'),longMin:$('longMin'),cyclesBeforeLong:$('cyclesBeforeLong'),completedCount:$('completedCount'),statusText:$('statusText'),taskInput:$('taskInput'),taskPreview:$('taskPreview'),notifyStatus:$('notifyStatus'),soundToggle:$('soundToggle'),desktopToggle:$('desktopToggle'),themeToggle:$('themeToggle'),historyList:$('historyList'),summaryText:$('summaryText')};
+    function load(){ try{return {...defaults,...JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}}catch{return {...defaults}} }
+    function save(){ localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); }
+    function minutesForPhase(){ return state.phase==='focus'?state.focusMin:(state.cycle%state.cyclesBeforeLong===0?state.longMin:state.shortMin); }
+    function phaseName(){ return state.phase==='focus'?'Focus':(state.cycle%state.cyclesBeforeLong===0?'Long break':'Short break'); }
+    function fmt(sec){ sec=Math.max(0,Math.round(sec)); const m=String(Math.floor(sec/60)).padStart(2,'0'); const s=String(sec%60).padStart(2,'0'); return `${m}:${s}`; }
     function syncInputs(){ els.focusMin.value=state.focusMin; els.shortMin.value=state.shortMin; els.longMin.value=state.longMin; els.cyclesBeforeLong.value=state.cyclesBeforeLong; els.taskInput.value=state.task||''; els.taskPreview.textContent=state.task||'Focus session'; }
-    function updateNotifyStatus(){ if (!('Notification' in window)) { els.notifyStatus.textContent='Notifications: unsupported'; return; } els.notifyStatus.textContent=`Notifications: ${Notification.permission}`; els.desktopToggle.textContent = `Notify: ${state.notifMode}`; }
-    function updateSoundStatus(){ els.soundToggle.textContent = `Sound: ${state.soundOn ? 'on' : 'off'}`; els.soundToggle.classList.toggle('on', state.soundOn); }
-    function renderHistory(){ els.historyList.innerHTML = (state.history||[]).slice(-5).reverse().map(x => `<li><span class="k">${x.kind}</span><span class="v">${x.task} · ${x.at}</span></li>`).join('') || '<li><span class="k">No history yet</span><span class="v">Complete a session</span></li>'; }
-    function pushHistory(kind, task){ state.history = Array.isArray(state.history) ? state.history : []; state.history.push({kind, task: task || 'Focus session', at: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}); state.history = state.history.slice(-10); }
-    function notify(title, body){ if (!('Notification' in window) || Notification.permission !== 'granted') return false; new Notification(title, {body, silent:false}); return true; }
-    function setDocTitle(){ document.title = `${state.running ? '▶ ' : ''}${fmt(state.remaining)} • ${phaseName()} • Pomodoro Flow`; }
-    function updateUI(){ els.phaseLabel.textContent=phaseName(); els.cycleLabel.textContent=`Cycle ${state.cycle} / ${state.cyclesBeforeLong}`; els.timeDisplay.textContent=fmt(state.remaining); const total = minutesForPhase()*60; els.progressBar.style.width=`${Math.min(100, Math.max(0, (1 - state.remaining/total) * 100))}%`; els.completedCount.textContent=state.completed; els.statusText.textContent=state.running ? 'Running' : 'Paused'; syncInputs(); updateNotifyStatus(); updateSoundStatus(); renderHistory(); setDocTitle(); save(); }
-    function clamp(n,min,max){ return Math.min(max, Math.max(min, n)); }
-    function applyPhase(resetTimer=true){ state.remaining = minutesForPhase()*60; if (resetTimer) state.lastTick = Date.now(); updateUI(); }
-    function beep(freq=880,dur=.18,gain=.05){ if (!state.soundOn) return; try { const a = new (window.AudioContext || window.webkitAudioContext)(); const o = a.createOscillator(); const g = a.createGain(); o.connect(g); g.connect(a.destination); o.frequency.value=freq; g.gain.value=.0001; o.start(); g.gain.exponentialRampToValueAtTime(gain, a.currentTime + .02); g.gain.exponentialRampToValueAtTime(.0001, a.currentTime + dur); o.stop(a.currentTime + dur + .02); } catch {} }
-    function advance(){ const wasFocus = state.phase === 'focus'; if (wasFocus) { state.completed += 1; pushHistory('Focus done', state.task); state.phase = 'break'; notify('Pomodoro Flow', `${state.task || 'Focus session'} complete — break time.`); beep(720,.22,.04); } else { pushHistory('Break done', state.task); state.phase = 'focus'; state.cycle = state.cycle >= state.cyclesBeforeLong ? 1 : state.cycle + 1; notify('Pomodoro Flow', `Break done — back to ${state.task || 'focus'}.`); beep(1040,.14,.03); } applyPhase(true); }
-    function tick(){ if (!state.running) return; const now = Date.now(); const elapsed = (now - (state.lastTick || now))/1000; state.lastTick = now; state.remaining -= elapsed; if (state.remaining <= 0) { state.remaining = 0; updateUI(); advance(); return; } updateUI(); }
-    function start(){ if (state.running) return; state.running=true; state.lastTick=Date.now(); if (!timer) timer=setInterval(tick,250); updateUI(); }
+    function applyTheme(){ document.documentElement.dataset.theme = state.theme || 'light'; els.themeToggle.textContent = `Theme: ${state.theme || 'light'}`; }
+    function updateNotifyStatus(){ if(!('Notification' in window)){ els.notifyStatus.textContent='Notifications: unsupported'; return; } els.notifyStatus.textContent=`Notifications: ${Notification.permission}`; els.desktopToggle.textContent=`Notify: ${state.notifMode}`; }
+    function updateSoundStatus(){ els.soundToggle.textContent=`Sound: ${state.soundOn?'on':'off'}`; els.soundToggle.classList.toggle('on', state.soundOn); }
+    function renderHistory(){ els.historyList.innerHTML=(state.history||[]).slice(-5).reverse().map(x=>`<li><span class="k">${x.kind}</span><span class="v">${x.task} · ${x.at}</span></li>`).join('')||'<li><span class="k">No history yet</span><span class="v">Complete a session</span></li>'; }
+    function pushHistory(kind,task){ state.history=Array.isArray(state.history)?state.history:[]; state.history.push({kind,task:task||'Focus session',at:new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}); state.history=state.history.slice(-10); }
+    function notify(title,body){ if(!('Notification' in window)||Notification.permission!=='granted') return false; new Notification(title,{body,silent:false}); return true; }
+    function setDocTitle(){ document.title=`${state.running?'▶ ':''}${fmt(state.remaining)} • ${phaseName()} • Pomodoro Flow`; }
+    function updateSummary(){ els.summaryText.textContent = state.lastSummary || 'No session completed yet.'; }
+    function updateUI(){ els.phaseLabel.textContent=phaseName(); els.cycleLabel.textContent=`Cycle ${state.cycle} / ${state.cyclesBeforeLong}`; els.timeDisplay.textContent=fmt(state.remaining); const total=minutesForPhase()*60; els.progressBar.style.width=`${Math.min(100,Math.max(0,(1-state.remaining/total)*100))}%`; els.completedCount.textContent=state.completed; els.statusText.textContent=state.running?'Running':'Paused'; syncInputs(); applyTheme(); updateNotifyStatus(); updateSoundStatus(); renderHistory(); updateSummary(); setDocTitle(); save(); }
+    function clamp(n,min,max){ return Math.min(max,Math.max(min,n)); }
+    function applyPhase(resetTimer=true){ state.remaining=minutesForPhase()*60; if(resetTimer) state.lastTick=Date.now(); updateUI(); }
+    function beep(freq=880,dur=.18,gain=.05){ if(!state.soundOn) return; try{ const a=new (window.AudioContext||window.webkitAudioContext)(); const o=a.createOscillator(); const g=a.createGain(); o.connect(g); g.connect(a.destination); o.frequency.value=freq; g.gain.value=.0001; o.start(); g.gain.exponentialRampToValueAtTime(gain,a.currentTime+.02); g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+dur); o.stop(a.currentTime+dur+.02);}catch{} }
+    function summarize(kind){ const label = `${kind} · ${state.task || 'Focus session'} · ${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`; state.lastSummary = label; }
+    function advance(){ const wasFocus = state.phase==='focus'; if(wasFocus){ state.completed+=1; pushHistory('Focus done',state.task); state.phase='break'; summarize('Focus done'); notify('Pomodoro Flow',`${state.task||'Focus session'} complete — break time.`); beep(720,.22,.04); } else { pushHistory('Break done',state.task); state.phase='focus'; state.cycle=state.cycle>=state.cyclesBeforeLong?1:state.cycle+1; summarize('Break done'); notify('Pomodoro Flow',`Break done — back to ${state.task||'focus'}.`); beep(1040,.14,.03); } applyPhase(true); }
+    function tick(){ if(!state.running) return; const now=Date.now(); const elapsed=(now-(state.lastTick||now))/1000; state.lastTick=now; state.remaining-=elapsed; if(state.remaining<=0){ state.remaining=0; updateUI(); advance(); return; } updateUI(); }
+    function start(){ if(state.running) return; state.running=true; state.lastTick=Date.now(); if(!timer) timer=setInterval(tick,250); updateUI(); }
     function pause(){ state.running=false; updateUI(); }
-    function resetAll(){ state = {...defaults}; applyPhase(false); state.running=false; updateUI(); }
+    function resetAll(){ state={...defaults}; applyPhase(false); state.running=false; updateUI(); }
     function skip(){ advance(); }
-    function commitInput(key,value){ state[key] = clamp(parseInt(value || defaults[key],10) || defaults[key], 1, 999); if (!state.running) applyPhase(false); else updateUI(); }
-    function setTask(text){ state.task = text.trim() || 'Focus session'; updateUI(); }
-    async function ensureNotifications(){ if (!('Notification' in window)) return updateNotifyStatus(); if (Notification.permission === 'default') await Notification.requestPermission(); updateNotifyStatus(); }
-    els.startBtn.onclick = async () => { await ensureNotifications(); start(); };
-    els.pauseBtn.onclick = pause; els.skipBtn.onclick = skip; els.resetBtn.onclick = resetAll;
-    els.soundToggle.onclick = () => { state.soundOn = !state.soundOn; updateUI(); };
-    els.desktopToggle.onclick = async () => { await ensureNotifications(); };
-    ['focusMin','shortMin','longMin','cyclesBeforeLong'].forEach(key => els[key].addEventListener('change', e => commitInput(key, e.target.value)));
-    els.taskInput.addEventListener('change', e => setTask(e.target.value)); els.taskInput.addEventListener('blur', e => setTask(e.target.value));
-    document.querySelectorAll('[data-preset]').forEach(btn => btn.addEventListener('click', () => { const [f,s,l,c] = btn.dataset.preset.split(',').map(Number); Object.assign(state, {focusMin:f, shortMin:s, longMin:l, cyclesBeforeLong:c, remaining:f*60, phase:'focus', cycle:1, running:false, lastTick:null}); updateUI(); document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); btn.classList.add('active'); }));
-    const presetMatch = document.querySelector(`[data-preset="${state.focusMin},${state.shortMin},${state.longMin},${state.cyclesBeforeLong}"]`); if (presetMatch) presetMatch.classList.add('active');
-    if (!state.remaining) state.remaining = state.phase === 'focus' ? state.focusMin*60 : state.shortMin*60;
-    updateUI(); setInterval(() => { if (state.running) tick(); }, 1000); window.addEventListener('beforeunload', save);
-    window.addEventListener('keydown', (e) => { if (e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return; if (e.code === 'Space') { e.preventDefault(); state.running ? pause() : start(); } if (e.key.toLowerCase() === 'p') { e.preventDefault(); state.running ? pause() : start(); } if (e.key.toLowerCase() === 's') { e.preventDefault(); skip(); } if (e.key.toLowerCase() === 'r') { e.preventDefault(); resetAll(); } if (e.key.toLowerCase() === 'n') { e.preventDefault(); els.taskInput.focus(); } });
+    function commitInput(key,value){ state[key]=clamp(parseInt(value||defaults[key],10)||defaults[key],1,999); if(!state.running) applyPhase(false); else updateUI(); }
+    function setTask(text){ state.task=text.trim()||'Focus session'; updateUI(); }
+    async function ensureNotifications(){ if(!('Notification' in window)) return updateNotifyStatus(); if(Notification.permission==='default') await Notification.requestPermission(); updateNotifyStatus(); }
+    els.startBtn.onclick=async()=>{ await ensureNotifications(); start(); };
+    els.pauseBtn.onclick=pause; els.skipBtn.onclick=skip; els.resetBtn.onclick=resetAll;
+    els.soundToggle.onclick=()=>{ state.soundOn=!state.soundOn; updateUI(); };
+    els.desktopToggle.onclick=async()=>{ await ensureNotifications(); };
+    els.themeToggle.onclick=()=>{ state.theme = (state.theme==='dark'?'light':'dark'); updateUI(); };
+    ['focusMin','shortMin','longMin','cyclesBeforeLong'].forEach(key=>els[key].addEventListener('change',e=>commitInput(key,e.target.value)));
+    els.taskInput.addEventListener('change',e=>setTask(e.target.value)); els.taskInput.addEventListener('blur',e=>setTask(e.target.value));
+    document.querySelectorAll('[data-preset]').forEach(btn=>btn.addEventListener('click',()=>{ const [f,s,l,c]=btn.dataset.preset.split(',').map(Number); Object.assign(state,{focusMin:f,shortMin:s,longMin:l,cyclesBeforeLong:c,remaining:f*60,phase:'focus',cycle:1,running:false,lastTick:null}); updateUI(); document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); btn.classList.add('active'); }));
+    const presetMatch=document.querySelector(`[data-preset="${state.focusMin},${state.shortMin},${state.longMin},${state.cyclesBeforeLong}"]`); if(presetMatch) presetMatch.classList.add('active');
+    if(!state.remaining) state.remaining = state.phase==='focus' ? state.focusMin*60 : state.shortMin*60;
+    if(!state.theme) state.theme='light';
+    updateUI(); setInterval(()=>{ if(state.running) tick(); },1000); window.addEventListener('beforeunload',save);
+    window.addEventListener('keydown',(e)=>{ if(e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return; if(e.code==='Space'){ e.preventDefault(); state.running ? pause() : start(); } if(e.key.toLowerCase()==='p'){ e.preventDefault(); state.running ? pause() : start(); } if(e.key.toLowerCase()==='s'){ e.preventDefault(); skip(); } if(e.key.toLowerCase()==='r'){ e.preventDefault(); resetAll(); } if(e.key.toLowerCase()==='n'){ e.preventDefault(); els.taskInput.focus(); } });
   </script>
 </body>
 </html>
