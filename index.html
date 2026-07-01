@@ -21,24 +21,10 @@
         <p class="sub">A clean single-page Pomodoro timer with localStorage persistence, cycle tracking, one-tap controls, sound toggles, notification hardening, task history, and subtle bells. Built to stay out of the way.</p>
         <p class="sub" style="margin-top:12px;color:#0D1321;opacity:.85;font-weight:600">Current task: <span id="taskPreview">Focus session</span></p>
         <div class="task"><input id="taskInput" type="text" maxlength="80" placeholder="What are you working on?" /></div>
-        <div class="timer-card">
-          <div class="timer-top">
-            <div class="phase"><strong id="phaseLabel">Focus</strong><span class="pill" id="cycleLabel">Cycle 1 / 4</span></div>
-            <div class="time" id="timeDisplay">25:00</div>
-            <div class="progress" aria-label="Session progress"><div id="progressBar"></div></div>
-            <div class="controls"><button class="primary" id="startBtn">Start</button><button class="secondary" id="pauseBtn">Pause</button><button class="ghost" id="skipBtn">Skip</button></div>
-            <div class="notice" id="notifyStatus">Notifications: not enabled</div>
-            <div class="summary" id="sessionSummary"><strong>Session summary</strong><span id="summaryText">No session completed yet.</span></div>
-          </div>
-        </div>
+        <div class="timer-card"><div class="timer-top"><div class="phase"><strong id="phaseLabel">Focus</strong><span class="pill" id="cycleLabel">Cycle 1 / 4</span></div><div class="time" id="timeDisplay">25:00</div><div class="progress" aria-label="Session progress"><div id="progressBar"></div></div><div class="controls"><button class="primary" id="startBtn">Start</button><button class="secondary" id="pauseBtn">Pause</button><button class="ghost" id="skipBtn">Skip</button></div><div class="notice" id="notifyStatus">Notifications: not enabled</div><div class="summary" id="sessionSummary"><strong>Session summary</strong><span id="summaryText">No session completed yet.</span></div></div></div>
       </div>
       <aside class="panel">
-        <div class="grid">
-          <div class="field"><label>Focus minutes</label><input id="focusMin" type="number" min="1" max="180" step="1" /></div>
-          <div class="field"><label>Short break</label><input id="shortMin" type="number" min="1" max="60" step="1" /></div>
-          <div class="field"><label>Long break</label><input id="longMin" type="number" min="1" max="120" step="1" /></div>
-          <div class="field"><label>Long break after</label><input id="cyclesBeforeLong" type="number" min="1" max="10" step="1" /></div>
-        </div>
+        <div class="grid"><div class="field"><label>Focus minutes</label><input id="focusMin" type="number" min="1" max="180" step="1" /></div><div class="field"><label>Short break</label><input id="shortMin" type="number" min="1" max="60" step="1" /></div><div class="field"><label>Long break</label><input id="longMin" type="number" min="1" max="120" step="1" /></div><div class="field"><label>Long break after</label><input id="cyclesBeforeLong" type="number" min="1" max="10" step="1" /></div></div>
         <div class="seg" aria-label="Quick presets"><button class="chip" data-preset="25,5,15,4">Classic 25/5</button><button class="chip" data-preset="50,10,20,4">Deep work 50/10</button><button class="chip" data-preset="15,3,10,4">Fast 15/3</button></div>
         <div class="toggles"><button class="toggle" id="soundToggle">Sound: on</button><button class="toggle" id="desktopToggle">Notify: ask</button><button class="toggle" id="themeToggle">Theme: light</button></div>
         <div class="section-title">Tiny history</div>
@@ -49,7 +35,7 @@
     </section>
   </main>
   <script>
-    const STORAGE_KEY='pomodoro-flow-v5';
+    const STORAGE_KEY='pomodoro-flow-v6';
     const defaults={focusMin:25,shortMin:5,longMin:15,cyclesBeforeLong:4,completed:0,phase:'focus',cycle:1,remaining:25*60,running:false,lastTick:null,task:'Focus session',soundOn:true,history:[],notifMode:'ask',theme:'light',lastSummary:'No session completed yet.'};
     let state=load(); let timer=null; const $=id=>document.getElementById(id);
     const els={phaseLabel:$('phaseLabel'),cycleLabel:$('cycleLabel'),timeDisplay:$('timeDisplay'),progressBar:$('progressBar'),startBtn:$('startBtn'),pauseBtn:$('pauseBtn'),skipBtn:$('skipBtn'),resetBtn:$('resetBtn'),focusMin:$('focusMin'),shortMin:$('shortMin'),longMin:$('longMin'),cyclesBeforeLong:$('cyclesBeforeLong'),completedCount:$('completedCount'),statusText:$('statusText'),taskInput:$('taskInput'),taskPreview:$('taskPreview'),notifyStatus:$('notifyStatus'),soundToggle:$('soundToggle'),desktopToggle:$('desktopToggle'),themeToggle:$('themeToggle'),historyList:$('historyList'),summaryText:$('summaryText')};
@@ -70,11 +56,13 @@
     function updateUI(){ els.phaseLabel.textContent=phaseName(); els.cycleLabel.textContent=`Cycle ${state.cycle} / ${state.cyclesBeforeLong}`; els.timeDisplay.textContent=fmt(state.remaining); const total=minutesForPhase()*60; els.progressBar.style.width=`${Math.min(100,Math.max(0,(1-state.remaining/total)*100))}%`; els.completedCount.textContent=state.completed; els.statusText.textContent=state.running?'Running':'Paused'; syncInputs(); applyTheme(); updateNotifyStatus(); updateSoundStatus(); renderHistory(); updateSummary(); setDocTitle(); save(); }
     function clamp(n,min,max){ return Math.min(max,Math.max(min,n)); }
     function applyPhase(resetTimer=true){ state.remaining=minutesForPhase()*60; if(resetTimer) state.lastTick=Date.now(); updateUI(); }
-    function beep(freq=880,dur=.18,gain=.05){ if(!state.soundOn) return; try{ const a=new (window.AudioContext||window.webkitAudioContext)(); const o=a.createOscillator(); const g=a.createGain(); o.connect(g); g.connect(a.destination); o.frequency.value=freq; g.gain.value=.0001; o.start(); g.gain.exponentialRampToValueAtTime(gain,a.currentTime+.02); g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+dur); o.stop(a.currentTime+dur+.02);}catch{} }
-    function summarize(kind){ const label = `${kind} · ${state.task || 'Focus session'} · ${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`; state.lastSummary = label; }
-    function advance(){ const wasFocus = state.phase==='focus'; if(wasFocus){ state.completed+=1; pushHistory('Focus done',state.task); state.phase='break'; summarize('Focus done'); notify('Pomodoro Flow',`${state.task||'Focus session'} complete — break time.`); beep(720,.22,.04); } else { pushHistory('Break done',state.task); state.phase='focus'; state.cycle=state.cycle>=state.cyclesBeforeLong?1:state.cycle+1; summarize('Break done'); notify('Pomodoro Flow',`Break done — back to ${state.task||'focus'}.`); beep(1040,.14,.03); } applyPhase(true); }
+    function tone(freqs,durations,gains){ if(!state.soundOn) return; try{ const a=new (window.AudioContext||window.webkitAudioContext)(); const play=i=>{ if(i>=freqs.length) return; const o=a.createOscillator(); const g=a.createGain(); o.type='sine'; o.connect(g); g.connect(a.destination); o.frequency.value=freqs[i]; g.gain.value=.0001; const start=a.currentTime; o.start(start); g.gain.exponentialRampToValueAtTime(gains[i], start+.02); g.gain.exponentialRampToValueAtTime(.0001, start+durations[i]); o.stop(start+durations[i]+.03); setTimeout(()=>play(i+1), Math.max(0, durations[i]*1000 + 70)); }; play(0);}catch{} }
+    function startChime(){ tone([523,659,784],[.14,.14,.2],[.05,.05,.04]); }
+    function endChime(){ tone([784,659,523],[.16,.16,.22],[.05,.05,.04]); }
+    function summarize(kind){ state.lastSummary = `${kind} · ${state.task || 'Focus session'} · ${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}`; }
+    function advance(){ const wasFocus = state.phase==='focus'; if(wasFocus){ state.completed+=1; pushHistory('Focus done',state.task); state.phase='break'; summarize('Focus done'); notify('Pomodoro Flow',`${state.task||'Focus session'} complete — break time.`); endChime(); } else { pushHistory('Break done',state.task); state.phase='focus'; state.cycle=state.cycle>=state.cyclesBeforeLong?1:state.cycle+1; summarize('Break done'); notify('Pomodoro Flow',`Break done — back to ${state.task||'focus'}.`); endChime(); } applyPhase(true); }
     function tick(){ if(!state.running) return; const now=Date.now(); const elapsed=(now-(state.lastTick||now))/1000; state.lastTick=now; state.remaining-=elapsed; if(state.remaining<=0){ state.remaining=0; updateUI(); advance(); return; } updateUI(); }
-    function start(){ if(state.running) return; state.running=true; state.lastTick=Date.now(); if(!timer) timer=setInterval(tick,250); updateUI(); }
+    function start(){ if(state.running) return; state.running=true; state.lastTick=Date.now(); if(!timer) timer=setInterval(tick,250); startChime(); updateUI(); }
     function pause(){ state.running=false; updateUI(); }
     function resetAll(){ state={...defaults}; applyPhase(false); state.running=false; updateUI(); }
     function skip(){ advance(); }
@@ -90,8 +78,7 @@
     els.taskInput.addEventListener('change',e=>setTask(e.target.value)); els.taskInput.addEventListener('blur',e=>setTask(e.target.value));
     document.querySelectorAll('[data-preset]').forEach(btn=>btn.addEventListener('click',()=>{ const [f,s,l,c]=btn.dataset.preset.split(',').map(Number); Object.assign(state,{focusMin:f,shortMin:s,longMin:l,cyclesBeforeLong:c,remaining:f*60,phase:'focus',cycle:1,running:false,lastTick:null}); updateUI(); document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); btn.classList.add('active'); }));
     const presetMatch=document.querySelector(`[data-preset="${state.focusMin},${state.shortMin},${state.longMin},${state.cyclesBeforeLong}"]`); if(presetMatch) presetMatch.classList.add('active');
-    if(!state.remaining) state.remaining = state.phase==='focus' ? state.focusMin*60 : state.shortMin*60;
-    if(!state.theme) state.theme='light';
+    if(!state.remaining) state.remaining = state.phase==='focus' ? state.focusMin*60 : state.shortMin*60; if(!state.theme) state.theme='light';
     updateUI(); setInterval(()=>{ if(state.running) tick(); },1000); window.addEventListener('beforeunload',save);
     window.addEventListener('keydown',(e)=>{ if(e.target && ['INPUT','TEXTAREA'].includes(e.target.tagName)) return; if(e.code==='Space'){ e.preventDefault(); state.running ? pause() : start(); } if(e.key.toLowerCase()==='p'){ e.preventDefault(); state.running ? pause() : start(); } if(e.key.toLowerCase()==='s'){ e.preventDefault(); skip(); } if(e.key.toLowerCase()==='r'){ e.preventDefault(); resetAll(); } if(e.key.toLowerCase()==='n'){ e.preventDefault(); els.taskInput.focus(); } });
   </script>
